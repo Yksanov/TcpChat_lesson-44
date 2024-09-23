@@ -12,3 +12,4 @@ D:\Attractor\month#2\TCPChat\ChatClient\obj\Debug\net8.0\refint\ChatClient.dll
 D:\Attractor\month#2\TCPChat\ChatClient\obj\Debug\net8.0\ChatClient.pdb
 D:\Attractor\month#2\TCPChat\ChatClient\obj\Debug\net8.0\ChatClient.genruntimeconfig.cache
 D:\Attractor\month#2\TCPChat\ChatClient\obj\Debug\net8.0\ref\ChatClient.dll
+D:\Attractor\month#2\TCPChat\ChatClient\obj\Debug\net8.0\ChatClient.sourcelink.json

@@ -4,6 +4,7 @@ namespace ChatClient;
 
 public class Client
 {
+    public List<string> newUser = new List<string>();
     public async Task RunAsync(string host, int port)
     {
         using var client = new TcpClient();
@@ -13,8 +14,20 @@ public class Client
             var stream = client.GetStream();
             var reader = new StreamReader(stream);
             var writer = new StreamWriter(stream);
-            Console.WriteLine("Enter your name:");
-            string userName = Console.ReadLine();
+            
+            string userName;
+            while (true)
+            {
+                Console.WriteLine("Enter your name:");
+                userName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(userName)|| newUser.Contains(userName))
+                {
+                    Console.WriteLine("Введите снова, Есть такое пользователь!");
+                    continue;
+                }
+                newUser.Add(userName);
+                break;
+            }
             Console.WriteLine("Welcome to the chat");
             var receiveTask = ReceiveMessagesAsync(reader);
             var sendTask = SendMessagesAsync(writer, userName);

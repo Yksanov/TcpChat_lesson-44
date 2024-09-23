@@ -29,7 +29,7 @@ public class Client
         try
         {
             string? userName = await Reader.ReadLineAsync();
-            string? message = $"{userName} join the chat";
+            string? message = $"{userName} join the chat ({DateTime.Now.Hour}:{DateTime.Now.Minute})";
             await _server.BroadCastMessage(message, Id);
             Console.WriteLine(message);
             try
@@ -38,14 +38,15 @@ public class Client
                 {
                     message = await Reader.ReadLineAsync();
                     if (message == null) continue;
-                    message = $" > {userName} : {message}";
+                    message = $" > {userName} : {message}" + 
+                    $" ({DateTime.Now.Hour}:{DateTime.Now.Minute})";
                     Console.WriteLine(message);
                     await _server.BroadCastMessage(message, Id);
                 }
             }
             catch (Exception ex)
             {
-                message = $"{userName} left the chat";
+                message = $"{userName} left the chat ({DateTime.Now.Hour}:{DateTime.Now.Minute})";
                 Console.WriteLine(message);
                 await _server.BroadCastMessage(message, Id);
             }
