@@ -1,0 +1,14 @@
+D:\Attractor\month#2\TCPChat\ChatServer\bin\Debug\net8.0\ChatServer.exe
+D:\Attractor\month#2\TCPChat\ChatServer\bin\Debug\net8.0\ChatServer.deps.json
+D:\Attractor\month#2\TCPChat\ChatServer\bin\Debug\net8.0\ChatServer.runtimeconfig.json
+D:\Attractor\month#2\TCPChat\ChatServer\bin\Debug\net8.0\ChatServer.dll
+D:\Attractor\month#2\TCPChat\ChatServer\bin\Debug\net8.0\ChatServer.pdb
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.AssemblyInfoInputs.cache
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.AssemblyInfo.cs
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.csproj.CoreCompileInputs.cache
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.dll
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\refint\ChatServer.dll
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.pdb
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ChatServer.genruntimeconfig.cache
+D:\Attractor\month#2\TCPChat\ChatServer\obj\Debug\net8.0\ref\ChatServer.dll
