@@ -112,7 +112,7 @@ public class Client
                         await _server.BroadCastMessage(message, Id);
                     }
                     
-                    Task time = Task.Delay(100000); // Task-2
+                    Task time = Task.Delay(10000); // Task-2
                     Task<string> timeout = Reader.ReadLineAsync();
                     Task t = await Task.WhenAny(time, timeout);
             
