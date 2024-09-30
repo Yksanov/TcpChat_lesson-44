@@ -1,10 +1,10 @@
 using System.Net.Sockets;
+using System.Text.Json.Serialization;
 
 namespace ChatClient;
 
 public class Client
 {
-    public List<string> newUser = new List<string>();
     public async Task RunAsync(string host, int port)
     {
         using var client = new TcpClient();
@@ -14,29 +14,21 @@ public class Client
             var stream = client.GetStream();
             var reader = new StreamReader(stream);
             var writer = new StreamWriter(stream);
-            
-            string userName;
-            while (true)
-            {
-                Console.WriteLine("Enter your name:");
-                userName = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(userName)|| newUser.Contains(userName))
-                {
-                    Console.WriteLine("Введите снова, Есть такое пользователь!");
-                    continue;
-                }
-                newUser.Add(userName);
-                break;
-            }
-            Console.WriteLine("Welcome to the chat");
+            Console.WriteLine("Enter your name:");
+            string userName = Console.ReadLine();
+            Console.WriteLine("Enter password: "); //
+            string password = Console.ReadLine(); //
+            Serializer.SaveGetConnect(new Connect(host, port)); //
             var receiveTask = ReceiveMessagesAsync(reader);
-            var sendTask = SendMessagesAsync(writer, userName);
+            var sendTask = SendMessagesAsync(writer, userName, password); //
             await Task.WhenAny(receiveTask, sendTask);
-
+            Serializer._Clients.Add(this); //
+            Serializer.SaveClient(); //
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+            Console.WriteLine("Error, try again!");
         }
         finally
         {
@@ -44,11 +36,11 @@ public class Client
         }
     }
 
-    private async Task SendMessagesAsync(StreamWriter writer, string? userName)
+    private async Task SendMessagesAsync(StreamWriter writer, string? userName, string? password)  //
     {
         await writer.WriteLineAsync($"{userName}");
+        await writer.WriteLineAsync($"{password}");
         await writer.FlushAsync();
-        Console.WriteLine("Enter your message:");
         while (true)
         {
             string? message = Console.ReadLine();

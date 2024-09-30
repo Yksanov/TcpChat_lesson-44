@@ -6,13 +6,28 @@ namespace ChatServer;
 
 public class Server
 {
+    public Dictionary<string, Client> Clients => _clients;
     private TcpListener _tcpListener = new TcpListener(IPAddress.Any, 8089);
-    private Dictionary<string, Client> _clients = new Dictionary<string, Client>();
-    
+    private static Dictionary<string, Client> _clients = new Dictionary<string, Client>();
+    public string serverHost { get; set; } //
+    public int serverPort { get; set; }  //
+    public string userName { get; set; } //
     
     public void AddClient(Client client)
     {
         _clients.Add(client.Id, client);
+        Serializer._Clients.Add(client); //
+        Serializer.SaveClient(); //
+    }
+
+    public async Task PrivateMessage(string message, string id)
+    {
+        Client? client = _clients.GetValueOrDefault(id);
+        if (client != null)
+        {
+            await client.Writer.WriteLineAsync(message);
+            await client.Writer.FlushAsync();
+        }
     }
     
     public async Task BroadCastMessage(string message, string id)
@@ -31,6 +46,9 @@ public class Server
     {
         _clients.GetValueOrDefault(id).Close();
         _clients.Remove(id);
+
+        // Serializer._Clients.Remove(_clients.GetValueOrDefault(id));
+        Serializer.SaveClient();
     }
 
     public async Task ProcessAsync() 
@@ -40,7 +58,7 @@ public class Server
         while (true)
         {
             TcpClient cl = await _tcpListener.AcceptTcpClientAsync();
-            Client client = new Client(cl, this);
+            Client client = new Client(cl, this,userName, serverHost, serverPort); // 
             Task.Run(client.ProcessAsync);
         }
     }
